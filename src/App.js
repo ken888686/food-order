@@ -30,9 +30,11 @@ function App() {
     },
   ];
 
+  const testTitle = 'Let\'s Go!';
+
   return (
     <div className="App">
-      <h1>Let&apos;s Go!</h1>
+      <h1>{testTitle}</h1>
       <Expenses expenses={expenses} />
     </div>
   );
