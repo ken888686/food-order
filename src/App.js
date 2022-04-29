@@ -32,6 +32,7 @@ function App() {
 
   return (
     <div className="App">
+      <h1>Let&apos;s Go!</h1>
       <Expenses expenses={expenses} />
     </div>
   );
