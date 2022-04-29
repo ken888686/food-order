@@ -1,5 +1,4 @@
-// import logo from './logo.svg';
-// import './App.css';
+import React from 'react';
 import Expenses from './components/Expenses';
 
 function App() {
@@ -32,11 +31,18 @@ function App() {
 
   const testTitle = 'Let\'s Go!';
 
-  return (
-    <div className="App">
-      <h1>{testTitle}</h1>
-      <Expenses expenses={expenses} />
-    </div>
+  // return (
+  //   <div className="App">
+  //     <h1>{testTitle}</h1>
+  //     <Expenses expenses={expenses} />
+  //   </div>
+  // );
+
+  return React.createElement(
+    'div',
+    { className: 'App' },
+    React.createElement('h2', {}, testTitle),
+    React.createElement(Expenses, { expenses }),
   );
 }
 
