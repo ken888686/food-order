@@ -1,7 +1,11 @@
-import './Card.scss';
+import classes from './Card.module.scss';
 
-export default function Card(props) {
-  const { className, children } = props;
-  const classes = `card ${className}`;
-  return <div className={classes}>{children}</div>;
+function Card({ className, children }) {
+  return (
+    <div className={`${classes.card} ${className}`}>
+      {children}
+    </div>
+  );
 }
+
+export default Card;
