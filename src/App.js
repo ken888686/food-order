@@ -1,9 +1,9 @@
+import { useState } from 'react';
 import Expenses from './components/Expenses/Expenses';
-import ExpensesFilter from './components/NewExpense/ExpensesFilter';
 import NewExpense from './components/NewExpense/NewExpense';
 
 function App() {
-  const expenses = [
+  const DUMMY_EXPENSES = [
     {
       id: 1,
       title: 'Car A',
@@ -30,18 +30,15 @@ function App() {
     },
   ];
 
-  const addExpenseHandler = (expenseData) => {
-    console.log(expenseData);
-  };
+  const [expenses, setExpenses] = useState(DUMMY_EXPENSES);
 
-  const yearChangeHandler = (year) => {
-    console.log(year);
+  const addExpenseHandler = (expenseData) => {
+    setExpenses([expenseData, ...expenses]);
   };
 
   return (
     <div className="App">
       <NewExpense addExpense={addExpenseHandler} />
-      <ExpensesFilter yearChange={yearChangeHandler} />
       <Expenses expenses={expenses} />
     </div>
   );

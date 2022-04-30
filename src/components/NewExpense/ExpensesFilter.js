@@ -6,7 +6,7 @@ function ExpensesFilter(props) {
 
   const yearChangeHandler = (event) => {
     setYear(event.target.value);
-    props.yearChange(event.target.value);
+    props.onChangeFilter(event.target.value);
   };
 
   return (
@@ -14,6 +14,7 @@ function ExpensesFilter(props) {
       <div className="expenses-filter__control">
         <label htmlFor="year">Filter by year</label>
         <select id="year" value={year} onChange={yearChangeHandler}>
+          <option value="0">All</option>
           <option value="2022">2022</option>
           <option value="2021">2021</option>
           <option value="2020">2020</option>
