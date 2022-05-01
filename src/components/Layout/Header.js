@@ -1,3 +1,5 @@
+import HeaderCardButton from './HeaderCardButton';
+
 import classes from './Header.module.scss';
 import mealsImage from '../../assets/meals.jpeg';
 
@@ -6,7 +8,7 @@ export default function Header() {
     <>
       <header className={classes.header}>
         <h1>React Meals</h1>
-        <button type="button">Cart</button>
+        <HeaderCardButton />
       </header>
       <div className={classes['main-image']}>
         <img
