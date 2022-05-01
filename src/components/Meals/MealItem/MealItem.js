@@ -1,8 +1,8 @@
 import classes from './MealItem.module.scss';
+import MealItemForm from './MealItemForm';
 
 export default function MealItem(props) {
   const price = `$${props.price.toFixed(2)}`;
-
   return (
     <li className={classes.meal}>
       <div>
@@ -11,7 +11,7 @@ export default function MealItem(props) {
         <div className={classes.price}>{price}</div>
       </div>
       <div>
-        Add
+        <MealItemForm id={props.id} />
       </div>
     </li>
   );
