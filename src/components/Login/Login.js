@@ -1,4 +1,4 @@
-import { useState, useReducer } from 'react';
+import { useState, useReducer, useEffect } from 'react';
 
 import Card from '../UI/Card/Card';
 import classes from './Login.module.scss';
@@ -57,6 +57,22 @@ function Login(props) {
     passwordReducer,
     { value: '', isValid: undefined },
   );
+
+  const { isValid: emailIsValid } = emailState;
+  const { isValid: passwordIsValid } = passwordState;
+
+  useEffect(() => {
+    console.log('Run Effect');
+    const timer = setTimeout(() => {
+      setFormIsValid(
+        emailIsValid && passwordIsValid,
+      );
+      return () => {
+        console.log('Clear Effect');
+        clearTimeout(timer);
+      };
+    }, 500);
+  }, [emailIsValid, passwordIsValid]);
 
   const emailChangeHandler = (event) => {
     dispatchEmail({ type: 'USER_INPUT', val: event.target.value });
@@ -119,7 +135,6 @@ function Login(props) {
         <div className={classes.actions}>
           <Button type="submit" className={classes.btn} disabled={!formIsValid}>
             Login
-            {formIsValid ? ' valid' : ' invalid'}
           </Button>
         </div>
       </form>
