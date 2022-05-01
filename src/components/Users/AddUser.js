@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Wrapper from '../Helpers/Wrapper';
 import Button from '../UI/Button';
 import Card from '../UI/Card';
@@ -6,20 +6,16 @@ import ErrorModal from '../UI/ErrorModal';
 import classes from './AddUser.module.scss';
 
 function AddUser(props) {
-  const [enteredUsername, setEnteredUsername] = useState('');
-  const [enteredAge, setEnteredAge] = useState('');
+  const nameInputRef = useRef();
+  const ageInputRef = useRef();
+
   const [error, setError] = useState();
-
-  const usernameChangeHandler = (event) => {
-    setEnteredUsername(event.target.value);
-  };
-
-  const ageChangeHandler = (event) => {
-    setEnteredAge(event.target.value);
-  };
 
   const addUserHandler = (event) => {
     event.preventDefault();
+
+    const enteredUsername = nameInputRef.current.value;
+    const enteredAge = ageInputRef.current.value;
 
     if (enteredUsername.trim().length === 0 || enteredAge.trim().length === 0) {
       setError({
@@ -38,9 +34,8 @@ function AddUser(props) {
     }
 
     props.onAddUser(enteredUsername, +enteredAge);
-
-    setEnteredUsername('');
-    setEnteredAge('');
+    nameInputRef.current.value = '';
+    ageInputRef.current.value = '';
   };
 
   const errorHandler = () => {
@@ -53,9 +48,21 @@ function AddUser(props) {
       <Card className={classes.input}>
         <form onSubmit={addUserHandler}>
           <label htmlFor="username">Username</label>
-          <input type="text" name="" id="username" value={enteredUsername} onChange={usernameChangeHandler} />
+          <input
+            type="text"
+            name=""
+            id="username"
+            ref={nameInputRef}
+          />
+
           <label htmlFor="age">Age</label>
-          <input type="number" name="" id="age" value={enteredAge} onChange={ageChangeHandler} />
+          <input
+            type="number"
+            name=""
+            id="age"
+            ref={ageInputRef}
+          />
+
           <Button type="submit">Add User</Button>
         </form>
       </Card>
