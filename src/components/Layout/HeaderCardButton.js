@@ -1,9 +1,13 @@
 import CartIcon from '../Cart/CartIcon';
 import classes from './HeaderCardButton.module.scss';
 
-export default function HeaderCardButton() {
+export default function HeaderCardButton(props) {
   return (
-    <button type="button" className={classes.button}>
+    <button
+      type="button"
+      className={classes.button}
+      onClick={props.onClick}
+    >
       <span className={classes.icon}>
         <CartIcon />
       </span>

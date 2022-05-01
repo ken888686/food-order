@@ -1,7 +1,7 @@
 import Modal from '../UI/Modal';
 import classes from './Cart.module.scss';
 
-export default function Cart() {
+export default function Cart(props) {
   const cartItems = (
     <ul className={classes['cart-items']}>
       {[{
@@ -14,15 +14,26 @@ export default function Cart() {
   );
 
   return (
-    <Modal>
+    <Modal onClose={props.onClose}>
       {cartItems}
       <div className={classes.total}>
         <span>Total Amount</span>
         <span>200</span>
       </div>
       <div className={classes.actions}>
-        <button type="button" className={classes['button--alt']}>Close</button>
-        <button type="button" className={classes.button}>Order</button>
+        <button
+          type="button"
+          className={classes['button--alt']}
+          onClick={props.onClose}
+        >
+          Close
+        </button>
+        <button
+          type="button"
+          className={classes.button}
+        >
+          Order
+        </button>
       </div>
     </Modal>
   );

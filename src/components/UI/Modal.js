@@ -1,8 +1,17 @@
 import { createPortal } from 'react-dom';
 import classes from './Modal.module.scss';
 
-function Backdrop() {
-  return <div className={classes.backdrop} />;
+function Backdrop(props) {
+  return (
+    <div
+      className={classes.backdrop}
+      onClick={props.onClose}
+      onKeyDown={props.onClose}
+      role="button"
+      aria-label="Close Modal"
+      tabIndex={0}
+    />
+  );
 }
 
 function ModalOverlay(props) {
@@ -19,7 +28,7 @@ export default function Modal(props) {
   return (
     <>
       {createPortal(
-        <Backdrop />,
+        <Backdrop onClose={props.onClose} />,
         portalElement,
       )}
       {createPortal(
