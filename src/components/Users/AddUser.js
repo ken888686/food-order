@@ -34,6 +34,8 @@ function AddUser(props) {
     }
 
     props.onAddUser(enteredUsername, +enteredAge);
+
+    // workaround for resetting the form
     nameInputRef.current.value = '';
     ageInputRef.current.value = '';
   };
