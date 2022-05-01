@@ -1,6 +1,18 @@
+import { useRef, useImperativeHandle, forwardRef } from 'react';
+
 import classes from './Input.module.scss';
 
-export default function Input(props) {
+const Input = forwardRef((props, ref) => {
+  const inputRef = useRef();
+
+  const activate = () => {
+    inputRef.current.focus();
+  };
+
+  useImperativeHandle(ref, () => ({
+    focus: activate,
+  }));
+
   return (
     <div
       className={`
@@ -9,6 +21,7 @@ export default function Input(props) {
     >
       <label htmlFor={props.id}>{props.label}</label>
       <input
+        ref={inputRef}
         type={props.type}
         id={props.id}
         value={props.value}
@@ -17,4 +30,6 @@ export default function Input(props) {
       />
     </div>
   );
-}
+});
+
+export default Input;
